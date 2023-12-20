@@ -3,15 +3,15 @@ const POST_GRAPHQL_FIELDS = `
   content {
     url
   }
-`
+`;
 
 async function fetchGraphQL(query: string, preview = false): Promise<any> {
   return fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
     {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${
           preview
             ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
@@ -19,17 +19,17 @@ async function fetchGraphQL(query: string, preview = false): Promise<any> {
         }`,
       },
       body: JSON.stringify({ query }),
-      next: { tags: ['posts'] },
-    }
-  ).then((response) => response.json())
+      next: { tags: ["posts"] },
+    },
+  ).then((response) => response.json());
 }
 
 function extractPost(fetchResponse: any): any {
-  return fetchResponse?.data?.mediaCollection?.items?.[0].content.url
+  return fetchResponse?.data?.mediaCollection?.items?.[0].content.url;
 }
 
 function extractPostEntries(fetchResponse: any): any[] {
-  return fetchResponse?.data?.mediaCollection?.items
+  return fetchResponse?.data?.mediaCollection?.items;
 }
 
 export async function getImage(name: string | null): Promise<any> {
@@ -41,7 +41,7 @@ export async function getImage(name: string | null): Promise<any> {
         }
       }
     }`,
-    true
-  )
-  return extractPost(entry)
+    true,
+  );
+  return extractPost(entry);
 }

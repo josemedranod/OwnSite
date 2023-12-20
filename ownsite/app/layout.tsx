@@ -1,11 +1,11 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
+import "./globals.css";
+import { Inter } from "next/font/google";
 
 const inter = Inter({
-  variable: '--font-inter',
-  subsets: ['latin'],
-  display: 'swap',
-})
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 function Footer() {
   return (
@@ -26,13 +26,13 @@ function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="es">
@@ -40,8 +40,8 @@ export default function RootLayout({
         <title>Enrique Medrano</title>
       </head>
       <body>
-          <main>{children}</main>
+        <main>{children}</main>
       </body>
     </html>
-  )
+  );
 }
