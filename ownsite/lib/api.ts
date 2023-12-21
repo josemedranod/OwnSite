@@ -24,8 +24,12 @@ async function fetchGraphQL(query: string, preview = false): Promise<any> {
   ).then((response) => response.json());
 }
 
-function extractPost(fetchResponse: any): any {
+function extractImage(fetchResponse: any): any {
   return fetchResponse?.data?.mediaCollection?.items?.[0].content.url;
+}
+
+function extractText(fetchResponse: any): any {
+  return fetchResponse?.data?.textoCollection?.items?.[0];
 }
 
 function extractPostEntries(fetchResponse: any): any[] {
@@ -37,11 +41,29 @@ export async function getImage(name: string | null): Promise<any> {
     `query {
       mediaCollection(where: { name: "${name}" }) {
         items {
-          ${POST_GRAPHQL_FIELDS}
+          content{
+            url
+          }
         }
       }
     }`,
     true,
   );
-  return extractPost(entry);
+  return extractImage(entry);
+}
+
+export async function getText(name: string | null): Promise<any> {
+  const entry = await fetchGraphQL(
+    `query {
+      textoCollection(where: { name: "${name}" }) {
+        items {
+          content {
+            json
+          }
+        }
+      }
+    }`,
+    true,
+  );
+  return extractText(entry);
 }
