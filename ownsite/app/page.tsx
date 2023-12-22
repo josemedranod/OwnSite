@@ -3,11 +3,10 @@ import { Button, Flex, Image, Text } from "@chakra-ui/react";
 
 export default async function Page() {
   const landing_page = await getImage("landing_page");
-  const image_Perfil = await getImage("perfil");
-  const text_Perfil = await getText("perfil");
+  const perfil_image = await getImage("perfil");
+  const perfil_text = await getText("perfil");
 
   return (
-
     <Flex
       direction={"column"}
       gap={"30"}
@@ -47,7 +46,6 @@ export default async function Page() {
         <Button
            variant={'solid'}
            colorScheme={'yellow'}
-           size={'lg'}
            >
             Contáctame
         </Button>
@@ -76,7 +74,7 @@ export default async function Page() {
           Perfil
         </Text>
         <Flex maxW={"800"}>
-          {text_Perfil.content.json.content.map((values: any) => (
+          {perfil_text.content.json.content.map((values: any) => (
             <Text 
               textColor={'white'}
               lineHeight={'2'}
@@ -87,7 +85,7 @@ export default async function Page() {
         </Flex>
       </Flex>
       <Flex>
-        {image_Perfil && <Image src={image_Perfil} alt={"foto apartado perfil"} boxSize={"20rem"} />}
+        {perfil_image && <Image src={perfil_image} alt={"foto apartado perfil"} boxSize={"20rem"} />}
       </Flex>
     </Flex>
     </Flex>

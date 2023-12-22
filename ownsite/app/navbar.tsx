@@ -23,6 +23,11 @@ export default async function Navbar() {
                 <Text
                 as={'b'}
                 >
+                    Competencias
+                </Text>
+                <Text
+                as={'b'}
+                >
                     Voluntariado
                 </Text>
             </Flex>
